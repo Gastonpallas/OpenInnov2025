@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'app_colors.dart';
+
 
 class LoginPage extends StatelessWidget {
   // Étape 1 : Déclaration des contrôleurs
@@ -8,42 +10,62 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.background,
       appBar: AppBar(
-        title: Text('Connexion'),
+        title: Text(
+          'Connexion',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: AppColors.primary,
+        iconTheme: IconThemeData(color: Colors.white),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            // Étape 2 : Liaison des contrôleurs aux TextField
             TextField(
               controller: emailController,
-              decoration: InputDecoration(labelText: 'Email'),
+              decoration: InputDecoration(
+                labelText: 'Email',
+                labelStyle: TextStyle(color: AppColors.textSecondary),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.primary),
+                ),
+              ),
             ),
             TextField(
               controller: passwordController,
-              decoration: InputDecoration(labelText: 'Mot de passe'),
               obscureText: true,
+              decoration: InputDecoration(
+                labelText: 'Mot de passe',
+                labelStyle: TextStyle(color: AppColors.textSecondary),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.primary),
+                ),
+              ),
             ),
             SizedBox(height: 20),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.primary,
+                foregroundColor: Colors.white,
+                minimumSize: Size(double.infinity, 50),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
               onPressed: () {
-                // Étape 3 : Récupération des valeurs saisies
                 String email = emailController.text;
                 String password = passwordController.text;
-
-                //TODO Apel API
-
-                //TODO SI OK
-
-                //TODO SI ERREUR
-                },
-              child: Text('Se connecter'),
+                // TODO: API call
+              },
+              child: Text('Se connecter', style: TextStyle(fontSize: 18)),
             ),
           ],
         ),
       ),
     );
+
   }
 }

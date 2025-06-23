@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'app_colors.dart';
 
 class SignupPage extends StatelessWidget {
-  // Étape 1 : Déclarer les contrôleurs
+  // Déclaration des contrôleurs
   final TextEditingController nomController = TextEditingController();
   final TextEditingController prenomController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -10,8 +11,12 @@ class SignupPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.background,
       appBar: AppBar(
-        title: Text('Inscription'),
+        backgroundColor: AppColors.primary,
+        iconTheme: IconThemeData(color: Colors.white),
+        title: Text('Inscription', style: TextStyle(color: Colors.white)),
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -20,39 +25,69 @@ class SignupPage extends StatelessWidget {
           children: <Widget>[
             TextField(
               controller: nomController,
-              decoration: InputDecoration(labelText: 'Nom'),
+              decoration: InputDecoration(
+                labelText: 'Nom',
+                labelStyle: TextStyle(color: AppColors.textSecondary),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.primary),
+                ),
+              ),
             ),
             TextField(
               controller: prenomController,
-              decoration: InputDecoration(labelText: 'Prénom'),
+              decoration: InputDecoration(
+                labelText: 'Prénom',
+                labelStyle: TextStyle(color: AppColors.textSecondary),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.primary),
+                ),
+              ),
             ),
             TextField(
               controller: emailController,
-              decoration: InputDecoration(labelText: 'Email'),
+              decoration: InputDecoration(
+                labelText: 'Email',
+                labelStyle: TextStyle(color: AppColors.textSecondary),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.primary),
+                ),
+              ),
             ),
             TextField(
               controller: passwordController,
-              decoration: InputDecoration(labelText: 'Mot de passe'),
               obscureText: true,
+              decoration: InputDecoration(
+                labelText: 'Mot de passe',
+                labelStyle: TextStyle(color: AppColors.textSecondary),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.primary),
+                ),
+              ),
             ),
             SizedBox(height: 20),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.primary,
+                foregroundColor: Colors.white,
+                minimumSize: Size(double.infinity, 50),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
               onPressed: () {
-                // Étape 2 : Récupérer les valeurs
                 String nom = nomController.text;
                 String prenom = prenomController.text;
                 String email = emailController.text;
                 String password = passwordController.text;
 
-                // Afficher dans la console
                 print('Nom : $nom');
                 print('Prénom : $prenom');
                 print('Email : $email');
                 print('Mot de passe : $password');
 
-                // Tu peux ajouter ici la logique d'inscription (API, validation, etc.)
+                // TODO: Logique d’inscription ici
               },
-              child: Text('Sign Up'),
+              child: Text('Créer un compte', style: TextStyle(fontSize: 18)),
             ),
           ],
         ),
